@@ -3,8 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="“Pragma”" content="”no-cache”" />
+    <meta http-equiv="“Expires”" content="”-1″" />
+    <meta http-equiv="“CACHE-CONTROL”" content="”NO-CACHE”" />
+    <meta name="description" content="A seat selecting application." />
 
-    <link rel="stylesheet" href="css/" />
+    <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/styles.css" />
     <title>Seat Selector</title>
   </head>
@@ -13,7 +17,40 @@
       <h1>Seat Selector</h1>
     </header>
 
-    <main></main>
+    <main>
+      <h2 class="movie-title">Movie title here</h2>
+
+      <div class="legend">
+        <p class="occupied">Occupied</p>
+
+        <p class="available">Available</p>
+
+        <p class="selected">Selected</p>
+      </div>
+
+      <div class="screen" aria-label="screen"></div>
+
+      <div class="seating-sections-container">
+        <div aria-label="seating-section" class="seating-section">
+          <h3 class="section-name">Front Left</h3>
+        </div>
+        <div aria-label="seating-section" class="seating-section">
+          <h3 class="section-name">Front Center</h3>
+        </div>
+        <div aria-label="seating-section" class="seating-section">
+          <h3 class="section-name">Front Right</h3>
+        </div>
+        <div aria-label="seating-section" class="seating-section">
+          <h3 class="section-name">Rear Left</h3>
+        </div>
+        <div aria-label="seating-section" class="seating-section">
+          <h3 class="section-name">Rear Center</h3>
+        </div>
+        <div aria-label="seating-section" class="seating-section">
+          <h3 class="section-name">Rear Right</h3>
+        </div>
+      </div>
+    </main>
 
     <footer>
       <p>
@@ -23,6 +60,6 @@
         >
       </p>
     </footer>
-    <script src="index.js"></script>
+    <script src="index.js" defer async></script>
   </body>
 </html>
