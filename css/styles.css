@@ -33,8 +33,9 @@ p.occupied::before {
   background-color: lightslategray;
 }
 
-p.available::before {
-  background-color: lightseagreen;
+p.available::before,
+.available-seat {
+  background-color: hsl(177, 70%, 41%);
 }
 
 p.selected::before {
