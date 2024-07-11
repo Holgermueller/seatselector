@@ -62,8 +62,26 @@ p.selected::before {
 }
 
 .seating-sections-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.seats-containers {
+  width: 95%;
+  margin: auto;
   display: grid;
-  grid-template-columns: repeat(3 1fr);
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.seat {
+  margin: 4px;
+  height: 40px;
+  width: 40px;
+  border: none;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  color: transparent;
+  justify-self: center;
 }
 
 footer {
