@@ -27,12 +27,15 @@ const randomlyOccupySeats = () => {
 
   let keys = Object.keys(seats);
 
-  let oneSeatToOccupy = seats[keys[(keys.length * Math.random()) << 0]];
+  for (let i = 0; i < 50; i++) {
+    let oneSeatToOccupy = seats[keys[(keys.length * Math.random()) >> 0]];
 
-  oneSeatToOccupy.classList.remove("available-seat");
-  oneSeatToOccupy.classList.add("seat-occupied");
+    oneSeatToOccupy.classList.remove("available-seat");
+    oneSeatToOccupy.classList.add("seat-occupied");
+    oneSeatToOccupy.disabled = true;
 
-  occupiedSeats.push(oneSeatToOccupy);
+    occupiedSeats.push(oneSeatToOccupy);
+  }
 
   console.log(occupiedSeats);
 };
