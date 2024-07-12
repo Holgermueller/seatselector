@@ -1,7 +1,5 @@
 "use strict";
 
-let occupied = [];
-let available = [];
 let selected = 0;
 
 const createSeats = () => {
@@ -12,8 +10,6 @@ const createSeats = () => {
       const button = document.createElement("button");
       button.classList.add("seat");
       button.classList.add("available-seat");
-      button.id = i + "-" + j;
-      button.setAttribute("Name", "Seat " + i + "-" + j);
 
       seatsContainers[i].appendChild(button);
     }
@@ -36,34 +32,51 @@ const randomlyOccupySeats = () => {
 
     occupiedSeats.push(oneSeatToOccupy);
   }
-
-  console.log(occupiedSeats);
 };
 
-const selectSeat = () => {
-  const seats = document.getElementsByClassName("seat");
+const selectSeat = (seat) => {
+  seat.classList.remove("available-seat");
+  seat.classList.add("seat-selected");
+  return selected++;
+};
+
+const deselectSeat = (seat) => {
+  seat.classList.remove("seat-selected");
+  seat.classList.add("available-seat");
+  return selected--;
+};
+
+const showConfirmation = () => {
   const selectionDisplay = document.getElementById("showSelectedSeats");
   const confirmButton = document.createElement("button");
   confirmButton.classList.add("confirmation-button");
   confirmButton.textContent = "Confirm seat selection";
+  console.log(selected);
+
+  if (selected == 0) {
+    selectionDisplay.style.display = "none";
+  } else {
+    selectionDisplay.style.display = "block";
+    selectionDisplay.innerHTML = "You have selected " + selected + " seat(s).";
+  }
+  selectionDisplay.appendChild(confirmButton);
+};
+
+const toggleSelection = () => {
+  const seats = document.getElementsByClassName("seat");
 
   for (let i = 0; i < seats.length; i++) {
     seats[i].addEventListener("click", () => {
-      seats[i].classList.add("seat-selected");
-      selected += 1;
-      console.log(selected);
-
-      if (selected == 0) {
-        selectionDisplay.style.display = "none";
+      let seat = seats[i];
+      if (seats[i].classList.contains("available-seat")) {
+        selectSeat(seat);
       } else {
-        selectionDisplay.style.display = "block";
-        selectionDisplay.innerHTML =
-          "You have selected " + selected + " seat(s).";
+        deselectSeat(seat);
       }
-      selectionDisplay.appendChild(confirmButton);
+      showConfirmation();
     });
   }
 };
 
 createSeats();
-selectSeat();
+toggleSelection();

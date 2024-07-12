@@ -117,6 +117,11 @@ footer {
 }
 
 @media screen and (min-width: 600px) {
+  .seat-selected,
+  .available-seat {
+    cursor: pointer;
+  }
+
   .seat-occupied {
     cursor: not-allowed;
   }
