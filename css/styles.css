@@ -29,7 +29,8 @@ a {
   transform: translateX(100%);
 }
 
-p.occupied::before {
+p.occupied::before,
+.seat-occupied {
   background-color: lightslategray;
 }
 
@@ -38,7 +39,8 @@ p.available::before,
   background-color: hsl(177, 70%, 41%);
 }
 
-p.selected::before {
+p.selected::before,
+.seat-selected {
   background-color: lightcoral;
 }
 
@@ -58,8 +60,11 @@ p.selected::before {
   display: block;
   background-color: hsla(179, 100%, 50%, 0.8);
   filter: blur(1em);
-
   transform: translateY(0.5rem);
+}
+
+.section-name {
+  margin: 4% auto;
 }
 
 .seating-sections-container {
@@ -85,9 +90,34 @@ p.selected::before {
   justify-self: center;
 }
 
+.show-selected-seats {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 60px;
+  background-color: green;
+  display: none;
+  color: white;
+}
+
+.confirmation-button {
+  width: 100%;
+  padding: 4px;
+  font-size: 1.25rem;
+}
+
 footer {
   width: 100%;
   position: relative;
   bottom: 0;
   left: 0;
+  font-size: 0.75rem;
+}
+
+@media screen and (min-width: 600px) {
+  .seat-occupied {
+    cursor: not-allowed;
+  }
 }
