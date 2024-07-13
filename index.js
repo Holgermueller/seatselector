@@ -104,6 +104,7 @@ const confirmSelected = () => {
       let seat = seats[i];
       seat.classList.remove("available-seat");
       seat.classList.add("confirmed-seat");
+      seat.disabled = true;
     }
     selectionDisplay.innerHTML = "Your selection is confirmed";
   });
