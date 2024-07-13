@@ -1,6 +1,7 @@
 "use strict";
 
 let selected = 0;
+let selectedSeats = [];
 
 const createSeats = () => {
   const seatsContainers = document.getElementsByClassName("seats-containers");
@@ -10,6 +11,7 @@ const createSeats = () => {
       const button = document.createElement("button");
       button.classList.add("seat");
       button.classList.add("available-seat");
+      button.id = j + "-" + i;
 
       seatsContainers[i].appendChild(button);
     }
@@ -37,12 +39,23 @@ const randomlyOccupySeats = () => {
 const selectSeat = (seat) => {
   seat.classList.remove("available-seat");
   seat.classList.add("seat-selected");
+  selectedSeats.push(seat);
+
   return selected++;
 };
 
 const deselectSeat = (seat) => {
   seat.classList.remove("seat-selected");
   seat.classList.add("available-seat");
+
+  let seatId = seat.id;
+
+  let idToRemove = selectedSeats.findIndex((seat) => seat.id == seatId);
+
+  selectedSeats.splice(idToRemove, 1);
+
+  console.log(selectedSeats);
+
   return selected--;
 };
 
@@ -51,7 +64,7 @@ const showConfirmation = () => {
   const confirmButton = document.createElement("button");
   confirmButton.classList.add("confirmation-button");
   confirmButton.textContent = "Confirm seat selection";
-  console.log(selected);
+  confirmButton.setAttribute("id", "confirm");
 
   if (selected == 0) {
     selectionDisplay.style.display = "none";
@@ -60,6 +73,7 @@ const showConfirmation = () => {
     selectionDisplay.innerHTML = "You have selected " + selected + " seat(s).";
   }
   selectionDisplay.appendChild(confirmButton);
+  confirmSelected(selected);
 };
 
 const toggleSelection = () => {
@@ -76,6 +90,22 @@ const toggleSelection = () => {
       showConfirmation();
     });
   }
+};
+
+const confirmSelected = () => {
+  const confirmButton = document.getElementById("confirm");
+
+  confirmButton.addEventListener("click", () => {
+    let seats = document.getElementsByClassName("seat-selected");
+    for (let i = 0; i < seats.length; i++) {
+      let seat = seats[i];
+
+      seat.classList.remove("available-seat");
+      seat.classList.add("confirmed-seat");
+    }
+
+    console.log(selectedSeats);
+  });
 };
 
 createSeats();
