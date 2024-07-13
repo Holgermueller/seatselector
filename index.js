@@ -2,6 +2,9 @@
 
 let selected = 0;
 let selectedSeats = [];
+const selectionDisplay = document.getElementById("showSelectedSeats");
+const seats = document.getElementsByClassName("seat");
+const confirmButton = document.createElement("button");
 
 const createSeats = () => {
   const seatsContainers = document.getElementsByClassName("seats-containers");
@@ -23,9 +26,7 @@ const createSeats = () => {
 };
 
 const randomlyOccupySeats = () => {
-  const seats = document.getElementsByClassName("seat");
   let occupiedSeats = [];
-
   let keys = Object.keys(seats);
 
   for (let i = 0; i < 50; i++) {
@@ -60,20 +61,14 @@ const deselectSeat = (seat) => {
   seat.removeAttribute("name", "selected-seat");
   seat.setAttribute("name", "available-seat:" + seat.id);
 
-  let seatId = seat.id;
-
-  let idToRemove = selectedSeats.findIndex((seat) => seat.id == seatId);
+  let idToRemove = selectedSeats.findIndex((seat) => seat.id == seat.id);
 
   selectedSeats.splice(idToRemove, 1);
-
-  console.log(selectedSeats);
 
   return selected--;
 };
 
 const showConfirmation = () => {
-  const selectionDisplay = document.getElementById("showSelectedSeats");
-  const confirmButton = document.createElement("button");
   confirmButton.classList.add("confirmation-button");
   confirmButton.textContent = "Confirm seat selection";
   confirmButton.setAttribute("id", "confirm");
@@ -89,8 +84,6 @@ const showConfirmation = () => {
 };
 
 const toggleSelection = () => {
-  const seats = document.getElementsByClassName("seat");
-
   for (let i = 0; i < seats.length; i++) {
     seats[i].addEventListener("click", () => {
       let seat = seats[i];
@@ -105,19 +98,20 @@ const toggleSelection = () => {
 };
 
 const confirmSelected = () => {
-  const confirmButton = document.getElementById("confirm");
-
   confirmButton.addEventListener("click", () => {
     let seats = document.getElementsByClassName("seat-selected");
     for (let i = 0; i < seats.length; i++) {
       let seat = seats[i];
-
       seat.classList.remove("available-seat");
       seat.classList.add("confirmed-seat");
     }
-
-    console.log(selectedSeats);
+    selectionDisplay.innerHTML = "Your selection is confirmed";
   });
+};
+
+const darkMode = () => {
+  let element = document.body;
+  element.classList.toggle("dark-mode");
 };
 
 createSeats();
