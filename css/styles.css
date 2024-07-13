@@ -1,3 +1,18 @@
+:root {
+  --black: hsl(100, 100%, 0);
+  --white: hsl(0, 0%, 100%);
+  --confirmed: hsl(271, 76%, 53%);
+  --occupied: hsl(204, 10%, 39%);
+  --available: hsl(177, 70%, 41%);
+  --selected: hsl(0, 79%, 72%);
+  --green: hsl(135, 100%, 17%);
+}
+
+.dark-mode {
+  --background-color: hsl(100, 100%, 0);
+  --text-color: hsl(0, 0%, 100%);
+}
+
 body,
 html {
   padding: 0;
@@ -31,21 +46,21 @@ a {
 
 p.occupied::before,
 .seat-occupied {
-  background-color: lightslategray;
+  background-color: var(--occupied);
 }
 
 p.available::before,
 .available-seat {
-  background-color: hsl(177, 70%, 41%);
+  background-color: var(--available);
 }
 
 p.selected::before,
 .seat-selected {
-  background-color: lightcoral;
+  background-color: var(--selected);
 }
 
 .confirmed-seat {
-  background-color: blueviolet;
+  background-color: var(--confirmed);
 }
 
 .screen {
@@ -101,9 +116,9 @@ p.selected::before,
   z-index: 2;
   width: 100%;
   height: 100px;
-  background-color: green;
+  background-color: var(--green);
   display: none;
-  color: white;
+  color: var(--white);
   padding-top: 8px;
 }
 
@@ -119,7 +134,7 @@ p.selected::before,
   font-size: 1.5rem;
   letter-spacing: 0.25rem;
   border: none;
-  border-top: 2px solid hsl(0, 0%, 100%);
+  border-top: 2px solid var(--white);
 }
 
 footer {

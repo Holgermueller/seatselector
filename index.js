@@ -11,6 +11,9 @@ const createSeats = () => {
       const button = document.createElement("button");
       button.classList.add("seat");
       button.classList.add("available-seat");
+      button.setAttribute("role", "button representing seat");
+      button.setAttribute("name", "available-seat: " + j + "-" + i);
+      button.textContent = "seat";
       button.id = j + "-" + i;
 
       seatsContainers[i].appendChild(button);
@@ -30,6 +33,11 @@ const randomlyOccupySeats = () => {
 
     oneSeatToOccupy.classList.remove("available-seat");
     oneSeatToOccupy.classList.add("seat-occupied");
+    oneSeatToOccupy.removeAttribute("name", "available-seat");
+    oneSeatToOccupy.setAttribute(
+      "name",
+      "occupied-seat: " + oneSeatToOccupy.id
+    );
     oneSeatToOccupy.disabled = true;
 
     occupiedSeats.push(oneSeatToOccupy);
@@ -39,6 +47,8 @@ const randomlyOccupySeats = () => {
 const selectSeat = (seat) => {
   seat.classList.remove("available-seat");
   seat.classList.add("seat-selected");
+  seat.removeAttribute("name", "available-seat");
+  seat.setAttribute("name", "selected-seat: " + seat.id);
   selectedSeats.push(seat);
 
   return selected++;
@@ -47,6 +57,8 @@ const selectSeat = (seat) => {
 const deselectSeat = (seat) => {
   seat.classList.remove("seat-selected");
   seat.classList.add("available-seat");
+  seat.removeAttribute("name", "selected-seat");
+  seat.setAttribute("name", "available-seat:" + seat.id);
 
   let seatId = seat.id;
 
