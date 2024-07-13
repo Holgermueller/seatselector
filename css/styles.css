@@ -209,6 +209,20 @@ footer {
 }
 
 @media screen and (min-width: 600px) {
+  .legend p::before {
+    content: " \00a0 ";
+    display: inline-block;
+    transform: none;
+    padding: 8px;
+    margin-right: 8px;
+  }
+
+  .seating-sections-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
   .seat-selected,
   .available-seat {
     cursor: pointer;
