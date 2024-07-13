@@ -30,6 +30,10 @@ a {
   text-decoration: none;
 }
 
+main {
+  margin-bottom: 22%;
+}
+
 label {
   margin-top: 0.5rem;
 }
@@ -209,6 +213,10 @@ footer {
 }
 
 @media screen and (min-width: 600px) {
+  main {
+    margin-bottom: 10%;
+  }
+
   .legend p::before {
     content: " \00a0 ";
     display: inline-block;
